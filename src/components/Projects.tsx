@@ -11,52 +11,52 @@ type Project = {
 
 const projects: Project[] = [
   {
-    img: '/assets/ph-tile-b.png',
-    title: 'Torre de Celosía 60m Cordillera',
-    tag: 'Torre autosoportada',
-    loc: 'Guanacaste · 2025',
-    desc: 'Diseño, fabricación y montaje de una torre de celosía autosoportada de 60 metros para ampliar la cobertura 4G en el norte del país. Cimentación profunda con cálculo estructural certificado y entrega documentada en cronograma.',
-    short: '01 · TORRES',
-  },
-  {
-    img: '/assets/ph-tile-a.png',
-    title: 'Casa de Operaciones — Sitio Costa',
-    tag: 'Construcción',
-    loc: 'Puntarenas · 2024',
-    desc: 'Caseta operativa llave en mano con cimentación, mampostería, acabados y sistemas eléctricos. Entregada lista para la instalación de equipos de telecomunicaciones del cliente.',
-    short: '02 · CONSTRUCCIÓN',
-  },
-  {
-    img: '/assets/ph-tile-c.png',
-    title: 'Reforzamiento de Sitio — Hub Metro',
+    img: '/assets/proyectos/oficina-02-estaciones-trabajo.jpeg',
+    title: 'Remodelación Integral de Oficinas Corporativas',
     tag: 'Remodelación',
-    loc: 'San José · 2024',
-    desc: 'Reforzamiento estructural y remodelación integral de un hub metropolitano para soportar nueva carga de antenas y equipos. Cero interrupción de servicio durante los trabajos.',
+    loc: 'San José · 2026',
+    desc: 'Rediseño completo de un piso corporativo: nuevas estaciones de trabajo, cielorraso, iluminación LED y distribución optimizada de puestos. Obra ejecutada por fases para no interrumpir la operación diaria del cliente.',
+    short: '01 · REMODELACIÓN',
+  },
+  {
+    img: '/assets/proyectos/oficina-04-pasillo-vidrio2.jpeg',
+    title: 'Adecuación de Oficinas con Mamparas de Vidrio',
+    tag: 'Remodelación',
+    loc: 'San José · 2026',
+    desc: 'Sustitución de divisiones tradicionales por mamparas de vidrio templado y perfilería de aluminio, mejorando la iluminación natural y la imagen corporativa de todo el pasillo de oficinas.',
+    short: '02 · REMODELACIÓN',
+  },
+  {
+    img: '/assets/proyectos/oficina-01-pasillo-puertas.jpeg',
+    title: 'Renovación de Pasillos y Áreas Comunes',
+    tag: 'Remodelación',
+    loc: 'San José · 2026',
+    desc: 'Cambio de piso, cielorraso, pintura y puertas de madera en los pasillos de acceso a un edificio de oficinas, incluyendo señalización y sistema de detección de incendios actualizado.',
     short: '03 · REMODELACIÓN',
   },
   {
-    img: '/assets/ph-tile-a.png',
-    title: 'Monopolo Urbano 36m',
-    tag: 'Torre autosoportada',
-    loc: 'Heredia · 2025',
-    desc: 'Monopolo urbano de 36m diseñado para minimizar impacto visual en zona residencial. Cimentación compacta y acabado camuflaje arquitectónico aprobado por la municipalidad.',
-    short: '04 · TORRES',
+    img: '/assets/proyectos/oficina-07-rack-datos.jpeg',
+    title: 'Adecuación de Cuarto de Telecomunicaciones',
+    tag: 'Mantenimiento',
+    loc: 'San José · 2026',
+    desc: 'Construcción de cuarto técnico con rack de datos, cableado estructurado y sistema eléctrico dedicado, como parte de un contrato de mantenimiento y actualización de infraestructura del edificio.',
+    short: '04 · MANTENIMIENTO',
   },
   {
-    img: '/assets/ph-tile-b.png',
-    title: 'Red Altiplano — 4 Torres',
-    tag: 'Torre autosoportada',
-    loc: 'Cartago · 2023',
-    desc: 'Despliegue coordinado de cuatro torres en sitios remotos del altiplano. Logística de izaje en condiciones adversas y entregas escalonadas según el plan de despliegue del operador.',
-    short: '05 · TORRES',
+    img: '/assets/proyectos/oficina-09-area-abierta.jpeg',
+    title: 'Remodelación de Área Abierta y Recepción',
+    tag: 'Remodelación',
+    loc: 'San José · 2026',
+    desc: 'Demolición de divisiones internas y construcción de un área abierta con acabados en piso pulido, ventanas de vidrio bloque y nueva distribución de espacios flexibles.',
+    short: '05 · REMODELACIÓN',
   },
   {
-    img: '/assets/ph-tile-b.png',
-    title: 'Complejo de Casetas de Equipo',
-    tag: 'Construcción',
-    loc: 'Limón · 2023',
-    desc: 'Complejo de seis casetas modulares para equipo de telecomunicaciones con sistemas redundantes de energía y ventilación. Construcción acelerada y entrega anticipada al cronograma.',
-    short: '06 · CONSTRUCCIÓN',
+    img: '/assets/hero-tower.png',
+    title: 'Torre de Celosía 60m Cordillera',
+    tag: 'Torre autosoportada',
+    loc: 'Guanacaste · 2025',
+    desc: 'Diseño, fabricación y montaje de una torre de celosía autosoportada de 60 metros para ampliar la cobertura 4G en el norte del país. Proyecto entregado a un operador de telecomunicaciones bajo nuestra línea especializada de torres.',
+    short: '06 · TORRES',
   },
 ];
 
@@ -126,8 +126,8 @@ export default function Projects() {
       <div className="wrap">
         <div className="section-head reveal">
           <div className="eyebrow is-light" data-en="Selected work">Trabajo seleccionado</div>
-          <h2 data-en="Projects delivered across the region">Proyectos entregados en toda la región</h2>
-          <p className="section-kicker lead" data-en="A sample of recent sites — towers, civil works and remodels handed over to operators and public clients.">Una muestra de sitios recientes — torres, obra civil y remodelaciones entregadas a operadores y clientes públicos.</p>
+          <h2 data-en="Remodels and maintenance delivered across the region">Remodelaciones y mantenimientos entregados en toda la región</h2>
+          <p className="section-kicker lead" data-en="A sample of recent projects — office remodels, maintenance and civil works, plus our specialized telecom tower line.">Una muestra de proyectos recientes — remodelación de oficinas, mantenimiento y obra civil, además de nuestra línea especializada de torres.</p>
         </div>
       </div>
 
@@ -141,7 +141,7 @@ export default function Projects() {
           >
             <img src={project.img} alt="" loading="lazy" />
             <div className="pt-overlay">
-              <div className="pt-tag" data-en="Self-supporting tower">{project.tag}</div>
+              <div className="pt-tag">{project.tag}</div>
               <h3>{project.title}</h3>
               <div className="pt-meta">{project.loc}</div>
             </div>
