@@ -7,7 +7,7 @@
   /* Brand color */
   --navy-950: #0a2038;
   --navy-900: #0e2a47;
-  --navy-800: #143a63; /* primary navy (from logo) */
+  --navy-800: #1f3d64; /* primary navy (from logo) */
   --navy-700: #1b4a7c;
   --navy-600: #245c95;
   --navy-tint: #e7edf3;
@@ -1197,6 +1197,83 @@ button {
   color: #fff;
 }
 
+/* Trust badges (CFIA / Sello PYME / years / towers) */
+.trust-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin-top: 22px;
+}
+.trust-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  color: #eaf1f8;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(2px);
+}
+.trust-chip svg {
+  width: 15px;
+  height: 15px;
+  color: var(--gold-300);
+  flex: none;
+}
+.trust-chip b {
+  color: var(--gold-300);
+  font-weight: 800;
+}
+.on-paper .trust-chip {
+  border-color: var(--line-soft);
+  background: #fff;
+  color: var(--navy-900);
+  box-shadow: var(--shadow-sm);
+}
+.on-paper .trust-chip b {
+  color: var(--gold-600);
+}
+
+.svc-note {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 20px 26px;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--gold-300);
+}
+.svc-note svg {
+  flex: none;
+  opacity: 0.85;
+}
+.svc-note p {
+  margin: 0;
+  color: #9fb2c6;
+  font-size: 0.94rem;
+  line-height: 1.5;
+  flex: 1 1 320px;
+}
+.svc-note-link {
+  flex: none;
+  color: var(--gold-300);
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.svc-note-link:hover {
+  color: #fff;
+}
+
 /* Service button (Read More) */
 .svc-btn {
   align-self: flex-start;
@@ -1646,6 +1723,74 @@ button {
 .proj-lb .lb-body .btn {
   align-self: flex-start;
   margin-top: auto;
+}
+
+.proj-lb .lb-ba-badge {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  z-index: 3;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(8, 22, 40, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+.proj-lb .lb-ba-badge.is-antes {
+  background: rgba(194, 60, 42, 0.82);
+  border-color: transparent;
+}
+.proj-lb .lb-ba-badge.is-despues {
+  background: rgba(224, 178, 60, 0.92);
+  color: var(--navy-900);
+  border-color: transparent;
+}
+
+.proj-lb .lb-thumbs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 12px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  background: linear-gradient(
+    0deg,
+    rgba(8, 22, 40, 0.85) 0%,
+    rgba(8, 22, 40, 0) 100%
+  );
+}
+.proj-lb .lb-thumb {
+  width: 46px;
+  height: 34px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.7;
+  transition:
+    opacity 0.2s,
+    border-color 0.2s;
+  flex: none;
+}
+.proj-lb .lb-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.proj-lb .lb-thumb.is-active {
+  opacity: 1;
+  border-color: var(--gold-400);
 }
 
 @media (max-width: 720px) {

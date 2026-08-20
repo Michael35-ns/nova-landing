@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
+type GalleryImg = { src: string; label: 'Antes' | 'Después' };
 
 type Project = {
   img: string;
@@ -7,48 +9,78 @@ type Project = {
   loc: string;
   desc: string;
   short: string;
+  gallery: GalleryImg[];
 };
 
 const projects: Project[] = [
   {
-    img: '/assets/proyectos/oficina-02-estaciones-trabajo.jpeg',
-    title: 'Remodelación Integral de Oficinas Corporativas',
+    img: '/assets/proyectos/tribunales/despues-01-estaciones.jpeg',
+    title: 'Remodelación y Modernización de Oficinas — Poder Judicial',
     tag: 'Remodelación',
-    loc: 'San José · 2026',
-    desc: 'Rediseño completo de un piso corporativo: nuevas estaciones de trabajo, cielorraso, iluminación LED y distribución optimizada de puestos. Obra ejecutada por fases para no interrumpir la operación diaria del cliente.',
+    loc: 'San José · 405 m² · 2025',
+    desc: 'Remodelación integral de 405 m² de oficinas administrativas para el Poder Judicial: demolición de cielorrasos y divisiones en mal estado, nuevas mamparas de vidrio, pisos, iluminación y estaciones de trabajo. Proyecto entregado en operación, sin interrumpir la atención al público.',
     short: '01 · REMODELACIÓN',
+    gallery: [
+      { src: '/assets/proyectos/tribunales/despues-01-estaciones.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/antes-01-pasillo.jpeg', label: 'Antes' },
+      { src: '/assets/proyectos/tribunales/despues-02-pasillo-oficinas.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/despues-03-pasillo-largo.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/antes-02-bano.jpeg', label: 'Antes' },
+      { src: '/assets/proyectos/tribunales/despues-04-puerta-madera.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/despues-05-vidrio-esmerilado.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/despues-06-oficina-luz.jpeg', label: 'Después' },
+    ],
   },
   {
-    img: '/assets/proyectos/oficina-04-pasillo-vidrio2.jpeg',
-    title: 'Adecuación de Oficinas con Mamparas de Vidrio',
+    img: '/assets/proyectos/tribunales/despues-02-pasillo-oficinas.jpeg',
+    title: 'Oficinas Privadas con Mamparas de Vidrio',
     tag: 'Remodelación',
-    loc: 'San José · 2026',
-    desc: 'Sustitución de divisiones tradicionales por mamparas de vidrio templado y perfilería de aluminio, mejorando la iluminación natural y la imagen corporativa de todo el pasillo de oficinas.',
+    loc: 'San José · 405 m² · 2025',
+    desc: 'Construcción de oficinas privadas con mamparas de vidrio templado y estructura de aluminio sobre un edificio existente, como parte de la modernización integral de las instalaciones del Poder Judicial.',
     short: '02 · REMODELACIÓN',
+    gallery: [
+      { src: '/assets/proyectos/tribunales/despues-02-pasillo-oficinas.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/antes-01-pasillo.jpeg', label: 'Antes' },
+      { src: '/assets/proyectos/tribunales/despues-03-pasillo-largo.jpeg', label: 'Después' },
+    ],
   },
   {
-    img: '/assets/proyectos/oficina-01-pasillo-puertas.jpeg',
-    title: 'Renovación de Pasillos y Áreas Comunes',
+    img: '/assets/proyectos/jaco/despues-01-fachada-vidrio.jpeg',
+    title: 'Acondicionamiento de Local a Oficinas — Correos de Costa Rica',
     tag: 'Remodelación',
-    loc: 'San José · 2026',
-    desc: 'Cambio de piso, cielorraso, pintura y puertas de madera en los pasillos de acceso a un edificio de oficinas, incluyendo señalización y sistema de detección de incendios actualizado.',
+    loc: 'Jacó · 120 m² · 2025',
+    desc: 'Acondicionamiento completo de un local comercial de 120 m² para convertirlo en oficinas de atención al público de Correos de Costa Rica S.A.: fachada de vidrio, mostrador de atención, cielorraso, piso y sistema eléctrico nuevo.',
     short: '03 · REMODELACIÓN',
+    gallery: [
+      { src: '/assets/proyectos/jaco/despues-01-fachada-vidrio.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/jaco/antes-01-obra-gris.jpeg', label: 'Antes' },
+      { src: '/assets/proyectos/jaco/antes-02-materiales.jpeg', label: 'Antes' },
+      { src: '/assets/proyectos/jaco/despues-02-pasillo-puertas.jpeg', label: 'Después' },
+    ],
   },
   {
-    img: '/assets/proyectos/oficina-07-rack-datos.jpeg',
-    title: 'Adecuación de Cuarto de Telecomunicaciones',
-    tag: 'Mantenimiento',
-    loc: 'San José · 2026',
-    desc: 'Construcción de cuarto técnico con rack de datos, cableado estructurado y sistema eléctrico dedicado, como parte de un contrato de mantenimiento y actualización de infraestructura del edificio.',
-    short: '04 · MANTENIMIENTO',
-  },
-  {
-    img: '/assets/proyectos/oficina-09-area-abierta.jpeg',
-    title: 'Remodelación de Área Abierta y Recepción',
+    img: '/assets/proyectos/tribunales/despues-06-oficina-luz.jpeg',
+    title: 'Oficina Administrativa con Iluminación Natural',
     tag: 'Remodelación',
-    loc: 'San José · 2026',
-    desc: 'Demolición de divisiones internas y construcción de un área abierta con acabados en piso pulido, ventanas de vidrio bloque y nueva distribución de espacios flexibles.',
+    loc: 'San José · 405 m² · 2025',
+    desc: 'Reacondicionamiento de oficina administrativa aprovechando la iluminación natural existente, con nuevo mobiliario, acabados y acceso directo a sala de reuniones con mampara de vidrio.',
+    short: '04 · REMODELACIÓN',
+    gallery: [
+      { src: '/assets/proyectos/tribunales/despues-06-oficina-luz.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/antes-02-bano.jpeg', label: 'Antes' },
+    ],
+  },
+  {
+    img: '/assets/proyectos/jaco/despues-02-pasillo-puertas.jpeg',
+    title: 'Pasillos y Puertas de Acceso — Local Comercial',
+    tag: 'Remodelación',
+    loc: 'Jacó · 120 m² · 2025',
+    desc: 'Distribución interna de pasillos y puertas de acceso a oficinas auxiliares, con acabados en piso porcelanato y pintura, dentro del proyecto de acondicionamiento del local de atención al público.',
     short: '05 · REMODELACIÓN',
+    gallery: [
+      { src: '/assets/proyectos/jaco/despues-02-pasillo-puertas.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/jaco/antes-01-obra-gris.jpeg', label: 'Antes' },
+    ],
   },
   {
     img: '/assets/hero-tower.png',
@@ -57,6 +89,7 @@ const projects: Project[] = [
     loc: 'Guanacaste · 2025',
     desc: 'Diseño, fabricación y montaje de una torre de celosía autosoportada de 60 metros para ampliar la cobertura 4G en el norte del país. Proyecto entregado a un operador de telecomunicaciones bajo nuestra línea especializada de torres.',
     short: '06 · TORRES',
+    gallery: [{ src: '/assets/hero-tower.png', label: 'Después' }],
   },
 ];
 
@@ -65,6 +98,12 @@ export default function Projects() {
   const fillRef = useRef<HTMLSpanElement | null>(null);
   const countRef = useRef<HTMLSpanElement | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeImg, setActiveImg] = useState(0);
+
+  const currentImg = useMemo(() => {
+    if (!selectedProject) return null;
+    return selectedProject.gallery[activeImg] ?? selectedProject.gallery[0];
+  }, [selectedProject, activeImg]);
 
   useEffect(() => {
     const strip = stripRef.current;
@@ -113,6 +152,11 @@ export default function Projects() {
     };
   }, [selectedProject]);
 
+  const openProject = (project: Project) => {
+    setSelectedProject(project);
+    setActiveImg(0);
+  };
+
   const scrollByTile = (direction: number) => {
     const strip = stripRef.current;
     if (!strip) return;
@@ -126,8 +170,8 @@ export default function Projects() {
       <div className="wrap">
         <div className="section-head reveal">
           <div className="eyebrow is-light" data-en="Selected work">Trabajo seleccionado</div>
-          <h2 data-en="Remodels and maintenance delivered across the region">Remodelaciones y mantenimientos entregados en toda la región</h2>
-          <p className="section-kicker lead" data-en="A sample of recent projects — office remodels, maintenance and civil works, plus our specialized telecom tower line.">Una muestra de proyectos recientes — remodelación de oficinas, mantenimiento y obra civil, además de nuestra línea especializada de torres.</p>
+          <h2 data-en="Remodels delivered for real clients">Remodelaciones entregadas a clientes reales</h2>
+          <p className="section-kicker lead" data-en="A sample of recent projects — office remodels for the Judicial Branch and Correos de Costa Rica, plus our specialized telecom tower line.">Una muestra de proyectos recientes — remodelación de oficinas para el Poder Judicial y Correos de Costa Rica, además de nuestra línea especializada de torres.</p>
         </div>
       </div>
 
@@ -137,7 +181,7 @@ export default function Projects() {
             key={`${project.title}-${index}`}
             type="button"
             className="proj-tile"
-            onClick={() => setSelectedProject(project)}
+            onClick={() => openProject(project)}
           >
             <img src={project.img} alt="" loading="lazy" />
             <div className="pt-overlay">
@@ -167,7 +211,7 @@ export default function Projects() {
         </div>
       </div>
 
-      {selectedProject && (
+      {selectedProject && currentImg && (
         <div className="proj-lb is-open" aria-hidden="false" role="dialog" aria-modal="true">
           <div className="lb-backdrop" onClick={() => setSelectedProject(null)} />
           <div className="lb-frame">
@@ -175,7 +219,23 @@ export default function Projects() {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M6 6l12 12M18 6L6 18" /></svg>
             </button>
             <div className="lb-media">
-              <img src={selectedProject.img} alt={selectedProject.title} />
+              <span className={`lb-ba-badge ${currentImg.label === 'Antes' ? 'is-antes' : 'is-despues'}`}>{currentImg.label}</span>
+              <img src={currentImg.src} alt={selectedProject.title} />
+              {selectedProject.gallery.length > 1 && (
+                <div className="lb-thumbs">
+                  {selectedProject.gallery.map((g, i) => (
+                    <button
+                      key={`${g.src}-${i}`}
+                      type="button"
+                      className={`lb-thumb ${i === activeImg ? 'is-active' : ''}`}
+                      onClick={() => setActiveImg(i)}
+                      aria-label={`${g.label} ${i + 1}`}
+                    >
+                      <img src={g.src} alt="" />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
             <div className="lb-body">
               <div className="lb-tag">{selectedProject.tag}</div>
