@@ -1796,11 +1796,12 @@ button {
 @media (max-width: 720px) {
   .proj-lb .lb-frame {
     grid-template-columns: 1fr;
+    grid-template-rows: 240px 1fr;
+    height: auto;
     max-height: calc(100vh - 32px);
   }
-  .proj-lb .lb-media img {
-    min-height: 200px;
-    max-height: 280px;
+  .proj-lb .lb-media {
+    height: 240px;
   }
 }
 

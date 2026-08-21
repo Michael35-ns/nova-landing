@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-type GalleryImg = { src: string; label: 'Antes' | 'Después' };
+type GalleryImg = { src: string; label: 'Antes' | 'Después' | 'Proceso' };
 
 type Project = {
   img: string;
@@ -27,21 +27,9 @@ const projects: Project[] = [
       { src: '/assets/proyectos/tribunales/despues-03-pasillo-largo.jpeg', label: 'Después' },
       { src: '/assets/proyectos/tribunales/antes-02-bano.jpeg', label: 'Antes' },
       { src: '/assets/proyectos/tribunales/despues-04-puerta-madera.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/antes-03-cuarto.png', label: 'Antes' },
       { src: '/assets/proyectos/tribunales/despues-05-vidrio-esmerilado.jpeg', label: 'Después' },
       { src: '/assets/proyectos/tribunales/despues-06-oficina-luz.jpeg', label: 'Después' },
-    ],
-  },
-  {
-    img: '/assets/proyectos/tribunales/despues-02-pasillo-oficinas.jpeg',
-    title: 'Oficinas Privadas con Mamparas de Vidrio',
-    tag: 'Remodelación',
-    loc: 'San José · 405 m² · 2025',
-    desc: 'Construcción de oficinas privadas con mamparas de vidrio templado y estructura de aluminio sobre un edificio existente, como parte de la modernización integral de las instalaciones del Poder Judicial.',
-    short: '02 · REMODELACIÓN',
-    gallery: [
-      { src: '/assets/proyectos/tribunales/despues-02-pasillo-oficinas.jpeg', label: 'Después' },
-      { src: '/assets/proyectos/tribunales/antes-01-pasillo.jpeg', label: 'Antes' },
-      { src: '/assets/proyectos/tribunales/despues-03-pasillo-largo.jpeg', label: 'Después' },
     ],
   },
   {
@@ -50,47 +38,75 @@ const projects: Project[] = [
     tag: 'Remodelación',
     loc: 'Jacó · 120 m² · 2025',
     desc: 'Acondicionamiento completo de un local comercial de 120 m² para convertirlo en oficinas de atención al público de Correos de Costa Rica S.A.: fachada de vidrio, mostrador de atención, cielorraso, piso y sistema eléctrico nuevo.',
-    short: '03 · REMODELACIÓN',
+    short: '02 · REMODELACIÓN',
     gallery: [
+      { src: '/assets/proyectos/jaco/antes-02-materiales.jpeg', label: 'Antes' },
+      { src: '/assets/proyectos/jaco/proceso-correos-01.jpeg', label: 'Proceso' },
       { src: '/assets/proyectos/jaco/despues-01-fachada-vidrio.jpeg', label: 'Después' },
       { src: '/assets/proyectos/jaco/antes-01-obra-gris.jpeg', label: 'Antes' },
-      { src: '/assets/proyectos/jaco/antes-02-materiales.jpeg', label: 'Antes' },
+      { src: '/assets/proyectos/jaco/proceso-correos-02.jpeg', label: 'Proceso' },
       { src: '/assets/proyectos/jaco/despues-02-pasillo-puertas.jpeg', label: 'Después' },
     ],
   },
   {
-    img: '/assets/proyectos/tribunales/despues-06-oficina-luz.jpeg',
-    title: 'Oficina Administrativa con Iluminación Natural',
+    img: '/assets/proyectos/san-carlos/despues-fachada-03.png',
+    title: 'Acondicionamiento de local de oficinas - Caja Costarricense del Seguro Social',
     tag: 'Remodelación',
-    loc: 'San José · 405 m² · 2025',
-    desc: 'Reacondicionamiento de oficina administrativa aprovechando la iluminación natural existente, con nuevo mobiliario, acabados y acceso directo a sala de reuniones con mampara de vidrio.',
-    short: '04 · REMODELACIÓN',
+    loc: 'San Carlos · 100 m² · 2025',
+    desc: 'Remodelación integral y adecuación espacial de un local de oficinas de 100 m² para la Caja Costarricense del Seguro Social en San Carlos. La intervención contempló la modernización de los acabados interiores mediante la renovación completa de pisos, la sustitución de sistemas de cielorrasos y techos, y la actualización de la fachada principal. El diseño se enfocó en optimizar la distribución para el flujo administrativo, mejorar el confort ambiental y cumplir estrictamente con los estándares institucionales de accesibilidad y durabilidad.',
+    short: '03 · REMODELACIÓN',
     gallery: [
-      { src: '/assets/proyectos/tribunales/despues-06-oficina-luz.jpeg', label: 'Después' },
-      { src: '/assets/proyectos/tribunales/antes-02-bano.jpeg', label: 'Antes' },
+      { src: '/assets/proyectos/san-carlos/antes-piso-01.png', label: 'Antes' },
+      { src: '/assets/proyectos/san-carlos/despues-piso-02.png', label: 'Después' },
+      { src: '/assets/proyectos/san-carlos/antes-techo-02.png', label: 'Antes' },
+      { src: '/assets/proyectos/san-carlos/despues-entrada-01.png', label: 'Después' },
+      { src: '/assets/proyectos/san-carlos/antes-techo-03.png', label: 'Antes' },  
+      { src: '/assets/proyectos/san-carlos/despues-fachada-03.png', label: 'Después' },
     ],
   },
   {
-    img: '/assets/proyectos/jaco/despues-02-pasillo-puertas.jpeg',
-    title: 'Pasillos y Puertas de Acceso — Local Comercial',
-    tag: 'Remodelación',
-    loc: 'Jacó · 120 m² · 2025',
-    desc: 'Distribución interna de pasillos y puertas de acceso a oficinas auxiliares, con acabados en piso porcelanato y pintura, dentro del proyecto de acondicionamiento del local de atención al público.',
-    short: '05 · REMODELACIÓN',
+    img: '/assets/proyectos/verbena/lobby-06.png',
+    title: 'Proyecto la Verbena Construcción de CEDI',
+    tag: 'Construcción',
+    loc: 'Verbena · 3360 m² · 2022',
+    desc: 'Proyecto llave en mano para la construcción de un Centro de Distribución (CEDI) de 3,360 m² en La Verbena. La obra civil abarcó desde la preparación del terreno hasta la ejecución de estructuras industriales de gran luz, techumbres de alta resistencia y la configuración técnica del área de almacenamiento masivo con sistemas de racks optimizados. Además de la zona operativa, se desarrollaron espacios complementarios que incluyen áreas de trabajo administrativo, núcleos de servicios sanitarios de alta demanda y un lobby de acceso contemporáneo.',
+    short: '04 · CONSTRUCCIÓN',
     gallery: [
-      { src: '/assets/proyectos/jaco/despues-02-pasillo-puertas.jpeg', label: 'Después' },
-      { src: '/assets/proyectos/jaco/antes-01-obra-gris.jpeg', label: 'Antes' },
+      { src: '/assets/proyectos/verbena/racks-01.png', label: 'Después' },
+      { src: '/assets/proyectos/verbena/racks-02.png', label: 'Después' },
+      { src: '/assets/proyectos/verbena/techo-03.png', label: 'Después' },
+      { src: '/assets/proyectos/verbena/bannos-04.png', label: 'Después' },
+      { src: '/assets/proyectos/verbena/area-trabajo-05.png', label: 'Después' },
     ],
   },
   {
-    img: '/assets/hero-tower.png',
+    img: '/assets/proyectos/telecomunicaciones/torre-01.png',
     title: 'Torre de Celosía 60m Cordillera',
     tag: 'Torre autosoportada',
     loc: 'Guanacaste · 2025',
     desc: 'Diseño, fabricación y montaje de una torre de celosía autosoportada de 60 metros para ampliar la cobertura 4G en el norte del país. Proyecto entregado a un operador de telecomunicaciones bajo nuestra línea especializada de torres.',
-    short: '06 · TORRES',
-    gallery: [{ src: '/assets/hero-tower.png', label: 'Después' }],
+    short: '05 · TORRES',
+    gallery: [
+        { src: '/assets/proyectos/telecomunicaciones/torre-03.png', label: 'Después' },
+        { src: '/assets/proyectos/telecomunicaciones/torre-02.png', label: 'Después' },
+        { src: '/assets/proyectos/telecomunicaciones/torre-04.png', label: 'Después' },
+        { src: '/assets/proyectos/telecomunicaciones/torre-01.png', label: 'Después' },
+        
+    ],
   },
+   {
+    img: '/assets/proyectos/casa/fachada-casa.png',
+    title: 'Residencia Unifamiliar',
+    tag: 'Diseño Residencial Contemporáneo',
+    loc: 'San José · 200 m² · 2025',
+    desc: 'Proyecto residencial de una planta fundamentado en el racionalismo formal y la optimización climática. El diseño destaca por una volumetría limpia en estuco blanco, interceptada por un sistema de cubiertas multi-ángulo con lucernarios triangulares que favorecen la iluminación cenital. La fachada oeste integra una celosía metálica horizontal exenta para el control de la radiación solar directa y la ventilación cruzada pasiva. El emplazamiento se complementa con un tratamiento de paisaje xerófilo de bajo mantenimiento y pavimentos articulados de alta resistencia en accesos vehicular y peatonal.',
+    short: '06 · RESIDENCIAL',
+    gallery: [
+        { src: '/assets/proyectos/casa/cocina-casa.png', label: 'Después' },
+        { src: '/assets/proyectos/casa/banno-casa.png', label: 'Después' },
+        { src: '/assets/proyectos/casa/entrada-casa.png', label: 'Después' },
+    ],
+  }
 ];
 
 export default function Projects() {
