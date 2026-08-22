@@ -12,6 +12,18 @@ type Project = {
   gallery: GalleryImg[];
 };
 
+const badgeClass = (label: GalleryImg['label']) => {
+  if (label === 'Antes') return 'is-antes';
+  if (label === 'Proceso') return 'is-proceso';
+  return 'is-despues';
+};
+
+const badgeLetter = (label: GalleryImg['label']) => {
+  if (label === 'Antes') return 'A';
+  if (label === 'Proceso') return 'P';
+  return 'D';
+};
+
 const projects: Project[] = [
   {
     img: '/assets/proyectos/tribunales/despues-01-estaciones.jpeg',
@@ -60,7 +72,7 @@ const projects: Project[] = [
       { src: '/assets/proyectos/san-carlos/despues-piso-02.png', label: 'Después' },
       { src: '/assets/proyectos/san-carlos/antes-techo-02.png', label: 'Antes' },
       { src: '/assets/proyectos/san-carlos/despues-entrada-01.png', label: 'Después' },
-      { src: '/assets/proyectos/san-carlos/antes-techo-03.png', label: 'Antes' },  
+      { src: '/assets/proyectos/san-carlos/antes-techo-03.png', label: 'Antes' },
       { src: '/assets/proyectos/san-carlos/despues-fachada-03.png', label: 'Después' },
     ],
   },
@@ -87,14 +99,13 @@ const projects: Project[] = [
     desc: 'Diseño, fabricación y montaje de una torre de celosía autosoportada de 60 metros para ampliar la cobertura 4G en el norte del país. Proyecto entregado a un operador de telecomunicaciones bajo nuestra línea especializada de torres.',
     short: '05 · TORRES',
     gallery: [
-        { src: '/assets/proyectos/telecomunicaciones/torre-03.png', label: 'Después' },
-        { src: '/assets/proyectos/telecomunicaciones/torre-02.png', label: 'Después' },
-        { src: '/assets/proyectos/telecomunicaciones/torre-04.png', label: 'Después' },
-        { src: '/assets/proyectos/telecomunicaciones/torre-01.png', label: 'Después' },
-        
+      { src: '/assets/proyectos/telecomunicaciones/torre-03.png', label: 'Después' },
+      { src: '/assets/proyectos/telecomunicaciones/torre-02.png', label: 'Después' },
+      { src: '/assets/proyectos/telecomunicaciones/torre-04.png', label: 'Después' },
+      { src: '/assets/proyectos/telecomunicaciones/torre-01.png', label: 'Después' },
     ],
   },
-   {
+  {
     img: '/assets/proyectos/casa/fachada-casa.png',
     title: 'Residencia Unifamiliar',
     tag: 'Diseño Residencial Contemporáneo',
@@ -102,11 +113,11 @@ const projects: Project[] = [
     desc: 'Proyecto residencial de una planta fundamentado en el racionalismo formal y la optimización climática. El diseño destaca por una volumetría limpia en estuco blanco, interceptada por un sistema de cubiertas multi-ángulo con lucernarios triangulares que favorecen la iluminación cenital. La fachada oeste integra una celosía metálica horizontal exenta para el control de la radiación solar directa y la ventilación cruzada pasiva. El emplazamiento se complementa con un tratamiento de paisaje xerófilo de bajo mantenimiento y pavimentos articulados de alta resistencia en accesos vehicular y peatonal.',
     short: '06 · RESIDENCIAL',
     gallery: [
-        { src: '/assets/proyectos/casa/cocina-casa.png', label: 'Después' },
-        { src: '/assets/proyectos/casa/banno-casa.png', label: 'Después' },
-        { src: '/assets/proyectos/casa/entrada-casa.png', label: 'Después' },
+      { src: '/assets/proyectos/casa/cocina-casa.png', label: 'Después' },
+      { src: '/assets/proyectos/casa/banno-casa.png', label: 'Después' },
+      { src: '/assets/proyectos/casa/entrada-casa.png', label: 'Después' },
     ],
-  }
+  },
 ];
 
 export default function Projects() {
@@ -235,7 +246,7 @@ export default function Projects() {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M6 6l12 12M18 6L6 18" /></svg>
             </button>
             <div className="lb-media">
-              <span className={`lb-ba-badge ${currentImg.label === 'Antes' ? 'is-antes' : 'is-despues'}`}>{currentImg.label}</span>
+              <span className={`lb-ba-badge ${badgeClass(currentImg.label)}`}>{currentImg.label}</span>
               <img src={currentImg.src} alt={selectedProject.title} />
               {selectedProject.gallery.length > 1 && (
                 <div className="lb-thumbs">
@@ -248,6 +259,7 @@ export default function Projects() {
                       aria-label={`${g.label} ${i + 1}`}
                     >
                       <img src={g.src} alt="" />
+                      <span className={`lb-thumb-tag ${badgeClass(g.label)}`}>{badgeLetter(g.label)}</span>
                     </button>
                   ))}
                 </div>
