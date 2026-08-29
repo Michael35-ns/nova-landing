@@ -71,7 +71,7 @@ export default function Nav() {
             <button type="button" data-lang="es" className={lang === 'es' ? 'active' : ''} onClick={() => setLang('es')}>ES</button>
             <button type="button" data-lang="en" className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button>
           </div>
-          <a href="#contact" className="btn btn-gold" data-en="Get a quote">Cotizar</a>
+          <a href="#contact" className="btn btn-gold" data-en="Get a quote">Contáctenos</a>
           <button
             className="nav-burger"
             id="burger"

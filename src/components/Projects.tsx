@@ -24,66 +24,33 @@ const badgeLetter = (label: GalleryImg['label']) => {
   return 'D';
 };
 
+// NOTA: reemplazar las rutas de /assets/proyectos/nayara/ por las fotos reales
+// del proyecto una vez que estén colocadas en esa carpeta (antes/después).
 const projects: Project[] = [
   {
-    img: '/assets/proyectos/tribunales/despues-01-estaciones.jpeg',
-    title: 'Remodelación y Modernización de Oficinas — Poder Judicial',
-    tag: 'Remodelación',
-    loc: 'San José · 405 m² · 2025',
-    desc: 'Remodelación integral de 405 m² de oficinas administrativas para el Poder Judicial: demolición de cielorrasos y divisiones en mal estado, nuevas mamparas de vidrio, pisos, iluminación y estaciones de trabajo. Proyecto entregado en operación, sin interrumpir la atención al público.',
-    short: '01 · REMODELACIÓN',
+    img: '/assets/proyectos/nayara/entrada.png',
+    title: 'Proyecto Nayara',
+    tag: 'Construcción',
+    loc: 'Construcción residencial · 112 m² · 2025',
+    desc: '',
+    short: '01 · CONSTRUCCIÓN',
     gallery: [
-      { src: '/assets/proyectos/tribunales/despues-01-estaciones.jpeg', label: 'Después' },
-      { src: '/assets/proyectos/tribunales/antes-01-pasillo.jpeg', label: 'Antes' },
-      { src: '/assets/proyectos/tribunales/despues-02-pasillo-oficinas.jpeg', label: 'Después' },
-      { src: '/assets/proyectos/tribunales/despues-03-pasillo-largo.jpeg', label: 'Después' },
-      { src: '/assets/proyectos/tribunales/antes-02-bano.jpeg', label: 'Antes' },
-      { src: '/assets/proyectos/tribunales/despues-04-puerta-madera.jpeg', label: 'Después' },
-      { src: '/assets/proyectos/tribunales/antes-03-cuarto.png', label: 'Antes' },
-      { src: '/assets/proyectos/tribunales/despues-05-vidrio-esmerilado.jpeg', label: 'Después' },
-      { src: '/assets/proyectos/tribunales/despues-06-oficina-luz.jpeg', label: 'Después' },
-    ],
-  },
-  {
-    img: '/assets/proyectos/jaco/despues-01-fachada-vidrio.jpeg',
-    title: 'Acondicionamiento de Local a Oficinas — Correos de Costa Rica',
-    tag: 'Remodelación',
-    loc: 'Jacó · 120 m² · 2025',
-    desc: 'Acondicionamiento completo de un local comercial de 120 m² para convertirlo en oficinas de atención al público de Correos de Costa Rica S.A.: fachada de vidrio, mostrador de atención, cielorraso, piso y sistema eléctrico nuevo.',
-    short: '02 · REMODELACIÓN',
-    gallery: [
-      { src: '/assets/proyectos/jaco/antes-02-materiales.jpeg', label: 'Antes' },
-      { src: '/assets/proyectos/jaco/proceso-correos-01.jpeg', label: 'Proceso' },
-      { src: '/assets/proyectos/jaco/despues-01-fachada-vidrio.jpeg', label: 'Después' },
-      { src: '/assets/proyectos/jaco/antes-01-obra-gris.jpeg', label: 'Antes' },
-      { src: '/assets/proyectos/jaco/proceso-correos-02.jpeg', label: 'Proceso' },
-      { src: '/assets/proyectos/jaco/despues-02-pasillo-puertas.jpeg', label: 'Después' },
-    ],
-  },
-  {
-    img: '/assets/proyectos/san-carlos/despues-fachada-03.png',
-    title: 'Acondicionamiento de local de oficinas - Caja Costarricense del Seguro Social',
-    tag: 'Remodelación',
-    loc: 'San Carlos · 100 m² · 2025',
-    desc: 'Remodelación integral y adecuación espacial de un local de oficinas de 100 m² para la Caja Costarricense del Seguro Social en San Carlos. La intervención contempló la modernización de los acabados interiores mediante la renovación completa de pisos, la sustitución de sistemas de cielorrasos y techos, y la actualización de la fachada principal. El diseño se enfocó en optimizar la distribución para el flujo administrativo, mejorar el confort ambiental y cumplir estrictamente con los estándares institucionales de accesibilidad y durabilidad.',
-    short: '03 · REMODELACIÓN',
-    gallery: [
-      { src: '/assets/proyectos/san-carlos/antes-piso-01.png', label: 'Antes' },
-      { src: '/assets/proyectos/san-carlos/despues-piso-02.png', label: 'Después' },
-      { src: '/assets/proyectos/san-carlos/antes-techo-02.png', label: 'Antes' },
-      { src: '/assets/proyectos/san-carlos/despues-entrada-01.png', label: 'Después' },
-      { src: '/assets/proyectos/san-carlos/antes-techo-03.png', label: 'Antes' },
-      { src: '/assets/proyectos/san-carlos/despues-fachada-03.png', label: 'Después' },
+      { src: '/assets/proyectos/nayara/casa_fachada.png', label: 'Después' },
+      { src: '/assets/proyectos/nayara/cocina.png', label: 'Después' },
+      { src: '/assets/proyectos/nayara/escalera.png', label: 'Después' },
+      { src: '/assets/proyectos/nayara/lobby.png', label: 'Después' },
+      { src: '/assets/proyectos/nayara/sala.png', label: 'Después' },
     ],
   },
   {
     img: '/assets/proyectos/verbena/lobby-06.png',
-    title: 'Proyecto la Verbena Construcción de CEDI',
+    title: 'La Verbena',
     tag: 'Construcción',
     loc: 'Verbena · 3360 m² · 2022',
-    desc: 'Proyecto llave en mano para la construcción de un Centro de Distribución (CEDI) de 3,360 m² en La Verbena. La obra civil abarcó desde la preparación del terreno hasta la ejecución de estructuras industriales de gran luz, techumbres de alta resistencia y la configuración técnica del área de almacenamiento masivo con sistemas de racks optimizados. Además de la zona operativa, se desarrollaron espacios complementarios que incluyen áreas de trabajo administrativo, núcleos de servicios sanitarios de alta demanda y un lobby de acceso contemporáneo.',
-    short: '04 · CONSTRUCCIÓN',
+    desc: '',
+    short: '02 · CONSTRUCCIÓN',
     gallery: [
+      { src: '/assets/proyectos/verbena/lobby-06.png', label: 'Después' },
       { src: '/assets/proyectos/verbena/racks-01.png', label: 'Después' },
       { src: '/assets/proyectos/verbena/racks-02.png', label: 'Después' },
       { src: '/assets/proyectos/verbena/techo-03.png', label: 'Después' },
@@ -92,30 +59,47 @@ const projects: Project[] = [
     ],
   },
   {
-    img: '/assets/proyectos/telecomunicaciones/torre-01.png',
-    title: 'Torre de Celosía 60m Cordillera',
-    tag: 'Torre autosoportada',
-    loc: 'Guanacaste · 2025',
-    desc: 'Diseño, fabricación y montaje de una torre de celosía autosoportada de 60 metros para ampliar la cobertura 4G en el norte del país. Proyecto entregado a un operador de telecomunicaciones bajo nuestra línea especializada de torres.',
-    short: '05 · TORRES',
+    img: '/assets/proyectos/tribunales/despues-01-estaciones.jpeg',
+    title: 'Poder Judicial',
+    tag: 'Remodelación',
+    loc: 'San José · 405 m² · 2025',
+    desc: '',
+    short: '03 · REMODELACIÓN',
     gallery: [
-      { src: '/assets/proyectos/telecomunicaciones/torre-03.png', label: 'Después' },
-      { src: '/assets/proyectos/telecomunicaciones/torre-02.png', label: 'Después' },
-      { src: '/assets/proyectos/telecomunicaciones/torre-04.png', label: 'Después' },
-      { src: '/assets/proyectos/telecomunicaciones/torre-01.png', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/despues-01-estaciones.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/despues-02-pasillo-oficinas.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/despues-03-pasillo-largo.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/despues-04-puerta-madera.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/despues-05-vidrio-esmerilado.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/despues-06-oficina-luz.jpeg', label: 'Después' },
     ],
   },
   {
-    img: '/assets/proyectos/casa/fachada-casa.png',
-    title: 'Residencia Unifamiliar',
-    tag: 'Diseño Residencial Contemporáneo',
-    loc: 'San José · 200 m² · 2025',
-    desc: 'Proyecto residencial de una planta fundamentado en el racionalismo formal y la optimización climática. El diseño destaca por una volumetría limpia en estuco blanco, interceptada por un sistema de cubiertas multi-ángulo con lucernarios triangulares que favorecen la iluminación cenital. La fachada oeste integra una celosía metálica horizontal exenta para el control de la radiación solar directa y la ventilación cruzada pasiva. El emplazamiento se complementa con un tratamiento de paisaje xerófilo de bajo mantenimiento y pavimentos articulados de alta resistencia en accesos vehicular y peatonal.',
-    short: '06 · RESIDENCIAL',
+    img: '/assets/proyectos/jaco/lobby-05.png',
+    title: 'Correos de Costa Rica',
+    tag: 'Remodelación',
+    loc: 'Jacó · 120 m² · 2025',
+    desc: '',
+    short: '04 · REMODELACIÓN',
     gallery: [
-      { src: '/assets/proyectos/casa/cocina-casa.png', label: 'Después' },
-      { src: '/assets/proyectos/casa/banno-casa.png', label: 'Después' },
-      { src: '/assets/proyectos/casa/entrada-casa.png', label: 'Después' },
+        { src: '/assets/proyectos/jaco/lobby-04.png', label: 'Después' },
+      { src: '/assets/proyectos/jaco/despues-01-fachada-vidrio.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/jaco/lobby-03.png', label: 'Después' },
+      { src: '/assets/proyectos/jaco/despues-02-pasillo-puertas.jpeg', label: 'Después' },
+    ],
+  },
+  {
+    img: '/assets/proyectos/telecomunicaciones/portada.png',
+    title: 'Infraestructura de Radiobases y Torres de Telecomunicaciones',
+    tag: 'Telecomunicaciones',
+    loc: 'Costa Rica · Cobertura nacional',
+    desc: 'Construcción de infraestructura civil y electromecánica, y montaje de estructuras para radiobases de telecomunicaciones, incluyendo soluciones tipo rooftop, monopolo, torres autosoportadas y arriostradas, de acuerdo con los requerimientos técnicos de cada proyecto.',
+    short: '05 · TELECOMUNICACIONES',
+    gallery: [
+      { src: '/assets/proyectos/telecomunicaciones/torre-01.png', label: 'Después' },
+      { src: '/assets/proyectos/telecomunicaciones/torre-02.png', label: 'Después' },
+      { src: '/assets/proyectos/telecomunicaciones/torre-03.png', label: 'Después' },
+      { src: '/assets/proyectos/telecomunicaciones/torre-04.png', label: 'Después' },
     ],
   },
 ];
@@ -197,8 +181,8 @@ export default function Projects() {
       <div className="wrap">
         <div className="section-head reveal">
           <div className="eyebrow is-light" data-en="Selected work">Trabajo seleccionado</div>
-          <h2 data-en="Remodels delivered for real clients">Remodelaciones entregadas a clientes reales</h2>
-          <p className="section-kicker lead" data-en="A sample of recent projects — office remodels for the Judicial Branch and Correos de Costa Rica, plus our specialized telecom tower line.">Una muestra de proyectos recientes — remodelación de oficinas para el Poder Judicial y Correos de Costa Rica, además de nuestra línea especializada de torres.</p>
+          <h2 data-en="Real projects for real clients">Proyectos reales para clientes reales</h2>
+          <p className="section-kicker lead" data-en="Construction, remodeling and telecom infrastructure projects delivered across Costa Rica.">Proyectos de construcción, remodelación e infraestructura de telecomunicaciones entregados en todo Costa Rica.</p>
         </div>
       </div>
 
@@ -229,7 +213,7 @@ export default function Projects() {
           </button>
           <div className="pc-progress" aria-hidden="true">
             <span className="pcp-bar"><span className="pcp-fill" ref={fillRef}></span></span>
-            <span className="pcp-count" ref={countRef}>01 / 06</span>
+            <span className="pcp-count" ref={countRef}>01 / 05</span>
           </div>
           <button className="pc-arrow next" type="button" aria-label="Siguiente" onClick={() => scrollByTile(1)}>
             <span data-en="NEXT">SIG</span>
@@ -269,8 +253,8 @@ export default function Projects() {
               <div className="lb-tag">{selectedProject.tag}</div>
               <h3>{selectedProject.title}</h3>
               <div className="lb-meta">{selectedProject.loc}</div>
-              <p>{selectedProject.desc}</p>
-              <a href="#contact" className="btn btn-gold" data-en="Request a quote">Solicitar cotización</a>
+              {selectedProject.desc && <p>{selectedProject.desc}</p>}
+              <a href="#contact" className="btn btn-gold" data-en="Contact us">Contáctenos</a>
             </div>
           </div>
         </div>
