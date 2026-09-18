@@ -23,7 +23,7 @@ export default function Nav() {
       }
     });
 
-    document.documentElement.lang = lang;
+    document.documentElement.lang = lang === 'en' ? 'en' : 'es-CR';
     localStorage.setItem('novosti-lang', lang);
   }, [lang]);
 
@@ -71,7 +71,7 @@ export default function Nav() {
             <button type="button" data-lang="es" className={lang === 'es' ? 'active' : ''} onClick={() => setLang('es')}>ES</button>
             <button type="button" data-lang="en" className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button>
           </div>
-          <a href="#contact" className="btn btn-gold" data-en="Get a quote">Contáctenos</a>
+          <a href="#contact" className="btn btn-gold" data-en="Quote my project">Cotizar mi proyecto</a>
           <button
             className="nav-burger"
             id="burger"

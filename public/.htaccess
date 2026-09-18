@@ -1,0 +1,69 @@
+# ============================================================
+#  NOVOSTI — Apache / cPanel
+#  Colocar junto al index.html, en public_html/
+# ============================================================
+
+# ----- HTTPS + www ------------------------------------------
+# Requiere que el certificado SSL ya esté instalado (AutoSSL de cPanel).
+# Si el dominio todavía no tiene SSL, comenta el bloque "HTTP -> HTTPS".
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # HTTP -> HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # dominio raíz -> www   (comenta estas 2 líneas si NO usas www)
+  RewriteCond %{HTTP_HOST} ^novosti\.com$ [NC]
+  RewriteRule ^ https://www.novosti.com%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ----- 404 personalizado -----------------------------------
+ErrorDocument 404 /404.html
+
+# ----- Compresión ----------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml \
+    application/javascript application/json image/svg+xml
+</IfModule>
+
+# ----- Cache de estáticos --------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css              "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg           "access plus 6 months"
+  ExpiresByType image/png            "access plus 6 months"
+  ExpiresByType image/webp           "access plus 6 months"
+  ExpiresByType image/svg+xml        "access plus 6 months"
+  ExpiresByType font/woff2           "access plus 1 year"
+  ExpiresDefault                     "access plus 1 week"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Los bundles de Vite llevan hash en el nombre -> cache inmutable.
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # El HTML y el PHP siempre revalidan.
+  <FilesMatch "\.(html|php)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+
+  # Cabeceras de seguridad básicas.
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ----- MIME (por si el host no los define) ---------------
+<IfModule mod_mime.c>
+  AddType application/json            .json
+  AddType image/svg+xml              .svg
+  AddType application/manifest+json  .webmanifest
+</IfModule>
+
+# ----- Bloquear dot-files (deja pasar /.well-known) ------
+<FilesMatch "^\.(?!well-known)">
+  Require all denied
+</FilesMatch>

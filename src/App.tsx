@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
@@ -17,10 +16,6 @@ import './styles.css';
 export default function App() {
   useReveal();
   useCounters();
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-hero', 'fullbleed');
-  }, []);
 
   return (
     <>

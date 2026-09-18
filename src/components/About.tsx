@@ -6,7 +6,7 @@ export default function About() {
       <div className="wrap">
         <div className="about-grid">
           <div className="about-media reveal">
-            <ImageSlot src="/assets/proyectos/tribunales/despues-03-pasillo-largo.jpeg" alt="" className="about-img" />
+            <ImageSlot src="/assets/proyectos/telecomunicaciones/portada.png" alt="Pasillo de oficinas institucionales remodelado por NOVOSTI en San José, Costa Rica" className="about-img" />
             <div className="badge">
               <b data-count="15" data-suffix="">15</b>
               <span data-en="Years of experience">Años de experiencia</span>
@@ -14,7 +14,7 @@ export default function About() {
           </div>
           <div className="about-body reveal d1">
             <div className="eyebrow" data-en="About Us">Nosotros</div>
-            <h2 data-en="Our mission and vision">Nuestra misión y visión</h2>
+            <h2 data-en="An engineering and construction company with 15 years of experience">Empresa de ingeniería y construcción con 15 años de experiencia</h2>
 
             <h3 className="about-subhead" data-en="Our mission">Nuestra misión</h3>
             <p data-en="At NOVOSTI we develop engineering, construction and telecommunications solutions, turning our clients' needs into efficient, reliable, high-value projects.">En NOVOSTI desarrollamos soluciones de ingeniería, construcción y telecomunicaciones, transformando las necesidades de nuestros clientes en proyectos eficientes, confiables y de alto valor.</p>
@@ -34,7 +34,7 @@ export default function About() {
             </ul>
 
             <div className="hero-cta" style={{ marginTop: 30 }}>
-              <a href="#contact" className="btn btn-primary" data-en="Talk to our team">Hablar con el equipo</a>
+              <a href="#contact" className="btn btn-primary" data-en="Talk to an engineer">Conversar con un ingeniero</a>
             </div>
           </div>
         </div>

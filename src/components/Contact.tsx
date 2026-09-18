@@ -1,30 +1,76 @@
 import { useState, type FormEvent } from 'react';
+import { site, whatsappUrl } from '../siteConfig';
+import { submitLead } from '../lib/submitLead';
+
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[];
+  }
+}
+
+type Status = 'idle' | 'submitting' | 'success' | 'error';
+
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
   const [errors, setErrors] = useState<Record<string, boolean>>({});
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+
+    // Honeypot anti-spam: si viene relleno, simulamos éxito y no enviamos nada.
+    if (String(formData.get('botcheck') ?? '').trim()) {
+      setStatus('success');
+      return;
+    }
+
     const name = String(formData.get('name') ?? '').trim();
     const email = String(formData.get('email') ?? '').trim();
 
     const nextErrors: Record<string, boolean> = {};
     if (!name) nextErrors.name = true;
-    if (!email) nextErrors.email = true;
-    else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) nextErrors.email = true;
-
+    if (!email || !EMAIL_RE.test(email)) nextErrors.email = true;
     setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) return;
 
-    if (Object.keys(nextErrors).length > 0) {
-      setSubmitted(false);
-      return;
+    const payload = {
+      name,
+      email,
+      company: String(formData.get('company') ?? '').trim(),
+      phone: String(formData.get('phone') ?? '').trim(),
+      service: String(formData.get('service') ?? '').trim(),
+      details: String(formData.get('details') ?? '').trim(),
+    };
+
+    setStatus('submitting');
+    setErrorMsg('');
+
+    try {
+      await submitLead(payload);
+
+      // Evento de conversión para GA4 / Google Ads / Meta (vía GTM dataLayer).
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'generate_lead',
+        form_name: 'contacto_novosti',
+        service: payload.service,
+      });
+
+      setStatus('success');
+      form.reset();
+    } catch (err) {
+      setStatus('error');
+      setErrorMsg(
+        err instanceof Error
+          ? err.message
+          : 'No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.',
+      );
     }
-
-    setSubmitted(true);
   };
 
   return (
@@ -32,8 +78,8 @@ export default function Contact() {
       <div className="wrap contact-grid">
         <div className="contact-copy reveal contact-info">
           <div className="eyebrow" data-en="Start a project">Inicia un proyecto</div>
-          <h2 data-en="Request a proposal for your next site">Solicita una propuesta para tu próximo sitio</h2>
-          <p className="section-kicker lead" data-en="Tell us about your tower, building or remodeling. We will respond in one business day with the next steps and the documentation you need.">Cuéntanos sobre tu torre, edificación o remodelación. Te respondemos en un día hábil con los siguientes pasos y la documentación que necesitas.</p>
+          <h2 data-en="Request a quote for your construction or remodeling project">Solicita una cotización para tu proyecto de construcción o remodelación</h2>
+          <p className="section-kicker lead" data-en="Tell us about your project — construction, remodeling, maintenance or telecom infrastructure. We reply within one business day with the next steps and the documentation you need.">Cuéntanos sobre tu proyecto de construcción, remodelación, mantenimiento o infraestructura de telecomunicaciones. Te respondemos en un día hábil con los siguientes pasos y la documentación que necesitas.</p>
 
           <ul className="contact-meta">
             <li>
@@ -42,7 +88,16 @@ export default function Contact() {
               </span>
               <div>
                 <b data-en="Call us">Llámanos</b>
-                <span>+1 (000) 000-0000</span>
+                <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>
+              </div>
+            </li>
+            <li>
+              <span className="ic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M20 12a8 8 0 10-3.1 6.3L21 21l-1.7-4A7.96 7.96 0 0020 12z" /></svg>
+              </span>
+              <div>
+                <b>WhatsApp</b>
+                <a href={whatsappUrl('Hola, quiero solicitar una cotización.')} target="_blank" rel="noopener">{site.phone.display}</a>
               </div>
             </li>
             <li>
@@ -51,7 +106,7 @@ export default function Contact() {
               </span>
               <div>
                 <b data-en="Email">Correo</b>
-                <span>proyectos@novosti.com</span>
+                <a href={`mailto:${site.email}`}>{site.email}</a>
               </div>
             </li>
             <li>
@@ -60,7 +115,7 @@ export default function Contact() {
               </span>
               <div>
                 <b data-en="Main office">Oficina principal</b>
-                <span>San José, Costa Rica</span>
+                <span>{site.address.locality}, {site.address.countryName}</span>
               </div>
             </li>
             <li>
@@ -69,58 +124,75 @@ export default function Contact() {
               </span>
               <div>
                 <b data-en="Hours">Horario</b>
-                <span>Lun–Vie · 8:00–18:00</span>
+                <span>{site.hoursShort}</span>
               </div>
             </li>
           </ul>
         </div>
 
-        {!submitted ? (
+        {status !== 'success' ? (
           <form className="contact-form reveal d1 form-card" onSubmit={handleSubmit} noValidate>
             <h3 data-en="Request a quote">Solicitar cotización</h3>
             <p className="fc-sub" data-en="Fields marked with * are required.">Los campos con * son obligatorios.</p>
 
+            <p className="hp-field" aria-hidden="true">
+              <label>
+                No completar este campo
+                <input type="text" name="botcheck" tabIndex={-1} autoComplete="off" />
+              </label>
+            </p>
+
             <div className="field-row">
               <div className="field">
-                <label>
+                <label htmlFor="cf-name">
                   <span>Nombre completo *</span>
-                  <input type="text" name="name" style={{ borderColor: errors.name ? '#c0392b' : undefined }} />
+                  <input
+                    id="cf-name"
+                    type="text"
+                    name="name"
+                    autoComplete="name"
+                    aria-invalid={errors.name || undefined}
+                    style={{ borderColor: errors.name ? '#c0392b' : undefined }}
+                  />
                 </label>
               </div>
               <div className="field">
-                <label>
+                <label htmlFor="cf-company">
                   <span>Empresa / Entidad</span>
-                  <input type="text" name="company" />
+                  <input id="cf-company" type="text" name="company" autoComplete="organization" />
                 </label>
               </div>
             </div>
 
             <div className="field-row">
               <div className="field">
-                <label>
+                <label htmlFor="cf-email">
                   <span>Correo *</span>
                   <input
+                    id="cf-email"
                     type="email"
                     name="email"
+                    autoComplete="email"
+                    aria-invalid={errors.email || undefined}
                     style={{ borderColor: errors.email ? '#c0392b' : undefined }}
                   />
                 </label>
               </div>
               <div className="field">
-                <label>
+                <label htmlFor="cf-phone">
                   <span>Teléfono</span>
-                  <input type="tel" name="phone" />
+                  <input id="cf-phone" type="tel" name="phone" autoComplete="tel" />
                 </label>
               </div>
             </div>
 
             <div className="field">
-              <label>
+              <label htmlFor="cf-service">
                 <span>Servicio de interés</span>
-                <select name="service" defaultValue="Torres autosoportadas">
-                  <option>Torres autosoportadas</option>
-                  <option>Construcción de casas</option>
-                  <option>Remodelación de instalaciones</option>
+                <select id="cf-service" name="service" defaultValue="Construcción y remodelación">
+                  <option>Construcción y remodelación</option>
+                  <option>Mantenimiento de infraestructura</option>
+                  <option>Infraestructura de telecomunicaciones</option>
                   <option>Licitación pública / RFP</option>
                   <option>Otro</option>
                 </select>
@@ -128,17 +200,25 @@ export default function Contact() {
             </div>
 
             <div className="field">
-              <label>
+              <label htmlFor="cf-details">
                 <span>Detalles del proyecto</span>
-                <textarea name="details" rows={5} placeholder="Ubicación, tipo de estructura, plazos…" />
+                <textarea id="cf-details" name="details" rows={5} placeholder="Ubicación, tipo de obra, metros cuadrados, plazos…" />
               </label>
             </div>
 
-            <button type="submit" className="btn btn-gold btn-lg" data-en="Send request">Enviar solicitud</button>
+            {status === 'error' && (
+              <p className="form-error" role="alert">{errorMsg}</p>
+            )}
+
+            <button type="submit" className="btn btn-gold btn-lg" disabled={status === 'submitting'}>
+              {status === 'submitting' ? 'Enviando…' : 'Quiero mi cotización'}
+            </button>
+
+            <p className="form-trust">Respuesta en 1 día hábil · Registrados en el CFIA · Sello PYME</p>
 
             <div className="form-note">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M12 22a10 10 0 100-20 10 10 0 000 20z" /><path d="M12 8h.01M11 12h2v4h-2z" /></svg>
-              <span data-en="Your information stays confidential.">Tu información se mantiene confidencial.</span>
+              <span>Al enviar aceptas nuestra <a href="/privacidad/">política de privacidad</a>. Tus datos se usan solo para responder tu solicitud.</span>
             </div>
           </form>
         ) : (
@@ -147,7 +227,7 @@ export default function Contact() {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M5 12l4 4L19 2" /></svg>
             </div>
             <h3 data-en="Request sent">Solicitud enviada</h3>
-            <p data-en="We will contact you shortly.">Te contactaremos pronto.</p>
+            <p>Te contactaremos en un día hábil. Si es urgente, escríbenos por WhatsApp al {site.phone.display}.</p>
           </div>
         )}
       </div>

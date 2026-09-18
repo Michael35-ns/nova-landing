@@ -6,7 +6,7 @@ export default function Testimonials() {
       <div className="wrap">
         <div className="section-head reveal">
           <div className="eyebrow" data-en="Client trust">Confianza de clientes</div>
-          <h2 data-en="The teams that keep their offices running, on Novosti">Los equipos que mantienen sus oficinas funcionando, sobre Novosti</h2>
+          <h2 data-en="What our clients say">Lo que dicen nuestros clientes</h2>
         </div>
         <div className="tst-grid">
           <figure className="tst-main reveal">

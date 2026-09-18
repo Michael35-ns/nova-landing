@@ -29,33 +29,38 @@ const badgeLetter = (label: GalleryImg['label']) => {
 const projects: Project[] = [
   {
     img: '/assets/proyectos/nayara/entrada.png',
-    title: 'Proyecto Nayara',
+    title: 'Proyecto Nayara - RESIDENCIAL',
     tag: 'Construcción',
     loc: 'Construcción residencial · 112 m² · 2025',
     desc: '',
     short: '01 · CONSTRUCCIÓN',
     gallery: [
       { src: '/assets/proyectos/nayara/casa_fachada.png', label: 'Después' },
-      { src: '/assets/proyectos/nayara/cocina.png', label: 'Después' },
+      { src: '/assets/proyectos/nayara/banno.png', label: 'Después' },
       { src: '/assets/proyectos/nayara/escalera.png', label: 'Después' },
-      { src: '/assets/proyectos/nayara/lobby.png', label: 'Después' },
       { src: '/assets/proyectos/nayara/sala.png', label: 'Después' },
+      { src: '/assets/proyectos/nayara/cocina.png', label: 'Después' },
+      { src: '/assets/proyectos/nayara/lobby.png', label: 'Después' },
+      { src: '/assets/proyectos/nayara/muro.png', label: 'Después' },
     ],
   },
   {
-    img: '/assets/proyectos/verbena/lobby-06.png',
-    title: 'La Verbena',
+    img: '/assets/proyectos/verbena/racks-02.png',
+    title: 'La Verbena - CEDI',
     tag: 'Construcción',
     loc: 'Verbena · 3360 m² · 2022',
     desc: '',
     short: '02 · CONSTRUCCIÓN',
     gallery: [
-      { src: '/assets/proyectos/verbena/lobby-06.png', label: 'Después' },
       { src: '/assets/proyectos/verbena/racks-01.png', label: 'Después' },
       { src: '/assets/proyectos/verbena/racks-02.png', label: 'Después' },
       { src: '/assets/proyectos/verbena/techo-03.png', label: 'Después' },
-      { src: '/assets/proyectos/verbena/bannos-04.png', label: 'Después' },
       { src: '/assets/proyectos/verbena/area-trabajo-05.png', label: 'Después' },
+      { src: '/assets/proyectos/verbena/racks-03.png', label: 'Después' },
+      { src: '/assets/proyectos/verbena/bannos-01.png', label: 'Después' },
+      { src: '/assets/proyectos/verbena/bannos-04.png', label: 'Después' },
+      { src: '/assets/proyectos/verbena/lobby-06.png', label: 'Después' },
+
     ],
   },
   {
@@ -70,8 +75,15 @@ const projects: Project[] = [
       { src: '/assets/proyectos/tribunales/despues-02-pasillo-oficinas.jpeg', label: 'Después' },
       { src: '/assets/proyectos/tribunales/despues-03-pasillo-largo.jpeg', label: 'Después' },
       { src: '/assets/proyectos/tribunales/despues-04-puerta-madera.jpeg', label: 'Después' },
-      { src: '/assets/proyectos/tribunales/despues-05-vidrio-esmerilado.jpeg', label: 'Después' },
       { src: '/assets/proyectos/tribunales/despues-06-oficina-luz.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/oficina-01.png', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/oficina-02.png', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/oficina-03.png', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/pasillo-doble.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/pasillo-vidrio.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/banno.jpg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/tomas.jpeg', label: 'Después' },
+      { src: '/assets/proyectos/tribunales/emergency.jpeg', label: 'Después' },
     ],
   },
   {
@@ -100,6 +112,28 @@ const projects: Project[] = [
       { src: '/assets/proyectos/telecomunicaciones/torre-02.png', label: 'Después' },
       { src: '/assets/proyectos/telecomunicaciones/torre-03.png', label: 'Después' },
       { src: '/assets/proyectos/telecomunicaciones/torre-04.png', label: 'Después' },
+      { src: '/assets/proyectos/telecomunicaciones/torre-05.png', label: 'Después' },
+      { src: '/assets/proyectos/telecomunicaciones/torre-06.png', label: 'Después' },
+      { src: '/assets/proyectos/telecomunicaciones/base.png', label: 'Después' },
+      { src: '/assets/proyectos/telecomunicaciones/base-02.png', label: 'Después' },
+      { src: '/assets/proyectos/telecomunicaciones/cabina.png', label: 'Después' },
+    ],
+  },
+  {
+    img: '/assets/proyectos/san_carlos/despues-fachada-03.png',
+    title: 'Proyecto San Carlos',
+    tag: 'Remodelación',
+    loc: 'San Carlos, Alajuela',
+    desc: '',
+    short: '06 · REMODELACIÓN',
+    gallery: [
+      { src: '/assets/proyectos/san_carlos/despues-fachada-03.png', label: 'Después' },
+      { src: '/assets/proyectos/san_carlos/despues-entrada-01.png', label: 'Después' },
+      { src: '/assets/proyectos/san_carlos/despues-piso-02.png', label: 'Después' },
+      { src: '/assets/proyectos/san_carlos/interior.png', label: 'Después' },
+      { src: '/assets/proyectos/san_carlos/parte-1.png', label: 'Después' },
+      { src: '/assets/proyectos/san_carlos/part-2.png', label: 'Después' },
+      { src: '/assets/proyectos/san_carlos/part-3.png', label: 'Después' },
     ],
   },
 ];
@@ -181,7 +215,7 @@ export default function Projects() {
       <div className="wrap">
         <div className="section-head reveal">
           <div className="eyebrow is-light" data-en="Selected work">Trabajo seleccionado</div>
-          <h2 data-en="Real projects for real clients">Proyectos reales para clientes reales</h2>
+          <h2 data-en="Construction and remodeling projects completed in Costa Rica">Proyectos de construcción y remodelación realizados en Costa Rica</h2>
           <p className="section-kicker lead" data-en="Construction, remodeling and telecom infrastructure projects delivered across Costa Rica.">Proyectos de construcción, remodelación e infraestructura de telecomunicaciones entregados en todo Costa Rica.</p>
         </div>
       </div>
@@ -194,7 +228,7 @@ export default function Projects() {
             className="proj-tile"
             onClick={() => openProject(project)}
           >
-            <img src={project.img} alt="" loading="lazy" />
+            <img src={project.img} alt={`${project.title} — ${project.tag} · ${project.loc}`} loading="lazy" />
             <div className="pt-overlay">
               <div className="pt-tag">{project.tag}</div>
               <h3>{project.title}</h3>
@@ -213,7 +247,7 @@ export default function Projects() {
           </button>
           <div className="pc-progress" aria-hidden="true">
             <span className="pcp-bar"><span className="pcp-fill" ref={fillRef}></span></span>
-            <span className="pcp-count" ref={countRef}>01 / 05</span>
+            <span className="pcp-count" ref={countRef}>{`01 / ${String(projects.length).padStart(2, '0')}`}</span>
           </div>
           <button className="pc-arrow next" type="button" aria-label="Siguiente" onClick={() => scrollByTile(1)}>
             <span data-en="NEXT">SIG</span>
@@ -231,7 +265,7 @@ export default function Projects() {
             </button>
             <div className="lb-media">
               <span className={`lb-ba-badge ${badgeClass(currentImg.label)}`}>{currentImg.label}</span>
-              <img src={currentImg.src} alt={selectedProject.title} />
+              <img src={currentImg.src} alt={`${selectedProject.title} — ${selectedProject.tag} · ${selectedProject.loc}`} />
               {selectedProject.gallery.length > 1 && (
                 <div className="lb-thumbs">
                   {selectedProject.gallery.map((g, i) => (
@@ -254,7 +288,7 @@ export default function Projects() {
               <h3>{selectedProject.title}</h3>
               <div className="lb-meta">{selectedProject.loc}</div>
               {selectedProject.desc && <p>{selectedProject.desc}</p>}
-              <a href="#contact" className="btn btn-gold" data-en="Contact us">Contáctenos</a>
+              <a href="#contact" className="btn btn-gold" data-en="I want a project like this">Quiero un proyecto así</a>
             </div>
           </div>
         </div>

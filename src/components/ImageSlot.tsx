@@ -34,5 +34,10 @@ export default function ImageSlot({ src, alt, srcset, sizes, className }: ImageS
     };
   }, [src, alt, srcset, sizes, className]);
 
-  return <div ref={containerRef} />;
+  // display:contents keeps this wrapper out of the box model so the
+  // <image-slot> custom element becomes the effective child of its CSS
+  // parent (e.g. .hero-bg), letting percentage width/height rules on
+  // `image-slot` resolve against a real containing block instead of
+  // collapsing against this div's auto height.
+  return <div ref={containerRef} style={{ display: 'contents' }} />;
 }
