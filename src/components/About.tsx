@@ -6,7 +6,7 @@ export default function About() {
       <div className="wrap">
         <div className="about-grid">
           <div className="about-media reveal">
-            <ImageSlot src="/assets/proyectos/telecomunicaciones/portada.png" alt="Pasillo de oficinas institucionales remodelado por NOVOSTI en San José, Costa Rica" className="about-img" />
+            <ImageSlot src="/assets/proyectos/telecomunicaciones/portada.png" alt="Torre autosoportada de telecomunicaciones construida por NOVOSTI en Costa Rica" className="about-img" />
             <div className="badge">
               <b data-count="15" data-suffix="">15</b>
               <span data-en="Years of experience">Años de experiencia</span>
@@ -27,9 +27,9 @@ export default function About() {
             <p data-en="We want to grow alongside our clients, partners, collaborators and communities, building relationships of trust and developing projects that generate value and leave a positive, lasting impact.">Queremos crecer junto a nuestros clientes, colaboradores, aliados y comunidades, construyendo relaciones de confianza y desarrollando proyectos que generen valor y dejen una huella positiva y sostenible.</p>
 
             <ul className="about-checks">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4}><path d="M20 6L9 17l-5-5"/></svg><span data-en="CFIA registered">Registrados en el CFIA</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4}><path d="M20 6L9 17l-5-5"/></svg><span data-en="Sello PYME certified">Certificados con Sello PYME</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4}><path d="M20 6L9 17l-5-5"/></svg><span data-en="On-time, accountable delivery">Entregas puntuales y con responsabilidad</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4}><path d="M20 6L9 17l-5-5"/></svg><span data-en="Satisfied clients">Clientes Satisfechos</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4}><path d="M20 6L9 17l-5-5"/></svg><span data-en="Quality and accountable delivery">Entregas con calidad y responsabilidad</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4}><path d="M20 6L9 17l-5-5"/></svg><span data-en="We apply occupational health, workplace safety and environmental management protocols">Aplicamos protocolos de salud ocupacional, seguridad laboral y manejo ambiental</span></li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4}><path d="M20 6L9 17l-5-5"/></svg><span data-en="Follow-up for the full project life cycle">Seguimiento en todo el ciclo de vida del proyecto</span></li>
             </ul>
 

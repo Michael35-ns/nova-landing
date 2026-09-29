@@ -13,7 +13,7 @@ export const site = {
   name: 'NOVOSTI',
   legalName: 'NOVOSTI Construction Company',
   /** Dominio de producción confirmado. Debe coincidir con robots.txt, sitemap.xml e index.html. */
-  domain: 'https://www.novosti.com',
+  domain: 'https://www.novosti.co.cr',
 
   phone: {
     /** Formato para mostrar en pantalla. */
@@ -25,7 +25,7 @@ export const site = {
   /** Provisional: confirmar el número habilitado para WhatsApp (con código país, sin +). */
   whatsapp: '50660641906',
 
-  email: 'proyectos@novosti.com',
+  email: 'info@innova.co.cr',
 
   address: {
     locality: 'San José',
@@ -37,11 +37,11 @@ export const site = {
   hoursShort: 'Lun–Vie · 8:00–18:00',
   hoursLong: 'Lun–Vie 8:00–18:00 · Sáb 9:00–13:00',
 
-  /** Provisional: reemplazar '#' por las URLs reales de cada red. */
+  /** Provisional: confirmar/actualizar Facebook y YouTube con las URLs reales. */
   social: {
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/company/innova-ingenieria-construccion-telecomunicaciones',
     facebook: '#',
-    instagram: '#',
+    instagram: 'https://www.instagram.com/novosti_constructora_cr/',
     youtube: '#',
   },
 } as const;

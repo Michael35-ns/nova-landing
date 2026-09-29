@@ -4,8 +4,8 @@ export default function Services() {
       <div className="wrap">
         <div className="section-head reveal">
           <div className="eyebrow is-light" data-en="What we do">Qué hacemos</div>
-          <h2 data-en="Construction, maintenance and telecommunications services">Servicios de construcción, mantenimiento y telecomunicaciones</h2>
-          <p className="section-kicker lead" data-en="We manage every project comprehensively, from civil works to telecom infrastructure, remodeling and maintenance.">Gestionamos cada proyecto de manera integral, desde la obra civil hasta la infraestructura de telecomunicaciones, la remodelación y el mantenimiento.</p>
+          <h2 data-en="Project management: construction, maintenance and telecommunications">Gerencia de proyectos, construcción, mantenimiento y telecomunicaciones</h2>
+          <p className="section-kicker lead" data-en="Planning, execution and delivery under our own technical, administrative and financial direction, with full responsibility over every project.">Planificación, ejecución y entrega bajo dirección propia en lo técnico, administrativo y financiero, con responsabilidad integral sobre cada proyecto.</p>
         </div>
         <div className="svc-grid">
           <article className="svc-card is-featured reveal">

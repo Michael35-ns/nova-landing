@@ -122,7 +122,7 @@ const projects: Project[] = [
   {
     img: '/assets/proyectos/san_carlos/despues-fachada-03.png',
     title: 'Proyecto San Carlos',
-    tag: 'Remodelación',
+    tag: 'Remodelación y modernización',
     loc: 'San Carlos, Alajuela',
     desc: '',
     short: '06 · REMODELACIÓN',
@@ -214,9 +214,10 @@ export default function Projects() {
     <section id="projects">
       <div className="wrap">
         <div className="section-head reveal">
-          <div className="eyebrow is-light" data-en="Selected work">Trabajo seleccionado</div>
+          <div className="eyebrow is-light" data-en="Completed projects">Proyectos entregados</div>
           <h2 data-en="Construction and remodeling projects completed in Costa Rica">Proyectos de construcción y remodelación realizados en Costa Rica</h2>
-          <p className="section-kicker lead" data-en="Construction, remodeling and telecom infrastructure projects delivered across Costa Rica.">Proyectos de construcción, remodelación e infraestructura de telecomunicaciones entregados en todo Costa Rica.</p>
+          <p className="section-kicker lead" data-en="A selection of civil works, remodeling and telecom infrastructure delivered for institutional, commercial, industrial and residential clients across the country.">Una selección de obra civil, remodelación e infraestructura de telecomunicaciones entregadas en los sectores institucional, comercial, industrial y residencial de todo el país.</p>
+          <a href="#projStrip" className="section-link" data-en="See some of the projects →">Ver algunos de los proyectos →</a>
         </div>
       </div>
 

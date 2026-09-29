@@ -183,6 +183,27 @@ button {
 .lead {
   margin-top: 18px;
 }
+.section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--gold-600);
+  transition:
+    gap 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+.section-link:hover {
+  gap: 10px;
+  color: var(--gold-500);
+}
+.section.navy .section-link,
+.section-link.is-light {
+  color: var(--gold-300);
+}
 
 /* gold rule */
 .gold-rule {
@@ -2513,7 +2534,7 @@ body[data-grid="off"] .blueprint {
   font-style: italic;
   font-size: 0.95rem;
   color: var(--gold-300);
-  margin: -6px 0 22px;
+  margin: 20px 0 22px;
   opacity: 0.9;
 }
 /* About: Misión / Visión subheadings */

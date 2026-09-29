@@ -15,10 +15,9 @@ export default function Hero() {
               <span data-en="Construction, remodeling and ">Construcción, remodelación y </span>
               <span className="accent" data-en="telecommunications in Costa Rica">telecomunicaciones en Costa Rica</span>
             </h1>
-            <p className="hero-sub" data-en="We develop integrated solutions in construction, civil works, telecom infrastructure, remodeling and maintenance, managing every project from planning through execution and handover. At NOVOSTI we integrate engineering, technical expertise and execution capacity to develop safe, efficient, sustainable projects aligned with our clients' goals.">Desarrollamos soluciones integrales de construcción, obra civil, infraestructura de telecomunicaciones, remodelaciones y mantenimiento, gestionando cada proyecto desde la planificación hasta su ejecución y entrega. En NOVOSTI integramos ingeniería, experiencia técnica y capacidad de ejecución para desarrollar proyectos seguros, eficientes, sostenibles y orientados al cumplimiento de los objetivos de nuestros clientes.</p>
+            <p className="hero-sub" data-en="We build, remodel and maintain offices, commercial premises, industrial warehouses and telecom infrastructure across Costa Rica. At NOVOSTI we take on the technical direction of every project and manage it start to finish: planning, execution and delivery on the agreed schedule. We are a CFIA-registered company, with completed projects for institutional and private clients in all seven provinces of the country.">Construimos, remodelamos y damos mantenimiento a oficinas, locales comerciales, naves industriales e infraestructura de telecomunicaciones en toda Costa Rica. En NOVOSTI asumimos la dirección técnica de cada proyecto y lo gestionamos de principio a fin: planificación, ejecución y entrega en el plazo acordado. Somos una empresa registrada en el CFIA, con obras entregadas para clientes institucionales y privados en las siete provincias del país.</p>
             <p className="hero-tagline" data-en="Engineering that plans. Construction that transforms. Projects that generate value.">Ingeniería que planifica. Construcción que transforma. Proyectos que generan valor.</p>
             <div className="hero-cta">
-              <a href="#contact" className="btn btn-gold btn-lg" data-en="Get a free quote">Solicitar cotización gratis</a>
               <a href="#projects" className="btn btn-ghost on-dark btn-lg" data-en="View completed projects">Ver proyectos realizados</a>
             </div>
             <div className="trust-bar" aria-label="Certificaciones">
@@ -26,10 +25,10 @@ export default function Hero() {
               <span className="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M20 6L9 17l-5-5"/></svg><b>Sello PYME</b></span>
             </div>
             <div className="hero-statstrip">
-              <div className="s"><b data-count="15" data-suffix="">15</b><span data-en="Years of experience">Años de experiencia</span></div>
+              <div className="s"><b data-count="15" data-suffix="+">15+</b><span data-en="Years of experience">Años de experiencia</span></div>
               <div className="s"><b data-count="700" data-suffix="+">700+</b><span data-en="Projects">Proyectos</span></div>
-              <div className="s"><b data-count="99" data-suffix="%">99%</b><span data-en="On-time delivery">Entregas a tiempo</span></div>
-              <div className="s"><b data-count="7" data-suffix="">7</b><span data-en="Provinces covered nationwide">Provincias cubiertas</span></div>
+              <div className="s"><b data-count="100" data-suffix="%">100%</b><span data-en="Satisfied clients">Clientes satisfechos</span></div>
+              <div className="s"><b data-count="7" data-suffix="">7</b><span data-en="Provinces covered nationwide">Provincias del país cubiertas</span></div>
             </div>
           </div>
         </div>
