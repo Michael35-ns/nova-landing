@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="v-fullbleed">
         <div className="hero-stage">
           <div className="hero-bg">
-            <ImageSlot src="/assets/proyectos/telecomunicaciones/torre-01.png" alt="Torre autosoportada de telecomunicaciones construida por NOVOSTI en Costa Rica" className="hero-full-img" />
+            <ImageSlot src="/assets/proyectos/telecomunicaciones/torre-01.webp" alt="Torre autosoportada de telecomunicaciones construida por NOVOSTI en Costa Rica" className="hero-full-img" />
           </div>
           <div className="hero-scrim blueprint" aria-hidden="true"></div>
           <div className="wrap">

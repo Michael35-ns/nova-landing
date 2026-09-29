@@ -2,7 +2,7 @@ export default function Coverage() {
   return (
     <section className="section cov-light" id="coverage">
       <div className="cov-map-bg" id="covMapBg" aria-hidden="true">
-        <img src="/assets/cr-map-relief.png" alt="" className="cr-map-photo" id="crMapPhoto" />
+        <img src="/assets/cr-map-relief.webp" alt="Mapa de relieve de Costa Rica" className="cr-map-photo" id="crMapPhoto" />
       </div>
       <div className="wrap cov-wrap">
         <div className="cov-body reveal">

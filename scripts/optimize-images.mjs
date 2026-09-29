@@ -1,83 +1,100 @@
-/**
- * Optimiza las imágenes de public/assets IN PLACE (sobrescribe los originales).
- *
- * Las imágenes están versionadas en git, así que un `git checkout -- public/assets`
- * revierte todo si algo no gusta.
- *
- * Uso:
- *   npm i -D sharp
- *   node scripts/optimize-images.mjs           # aplica los cambios
- *   node scripts/optimize-images.mjs --dry     # solo muestra qué haría
- *
- * Qué hace:
- *   - Redimensiona a un ancho máximo de MAX_WIDTH px (sin ampliar).
- *   - Re-comprime JPEG (mozjpeg, calidad 72) y PNG (nivel 9, con paleta).
- *   - Conserva el formato y el nombre -> no rompe ninguna referencia.
- *   - Solo escribe si el archivo resultante es más pequeño.
- */
+// One-time conversion of the unoptimized project photos (raw camera-resolution
+// PNGs, 1.4–3.4 MB each — ~80 MB total) into compressed WebP.
+//
+// Run manually with `node scripts/optimize-images.mjs`. It is NOT part of the
+// build — it rewrites files in `public/` and prints the list of source-code
+// references to update by hand (or via the companion rewrite step run right
+// after it), so it should only be run deliberately, once.
+//
+// Originals are moved (not deleted) to `originals/` at the repo root — a
+// sibling of `public/`, so Vite never copies them into `dist/` — preserving
+// the source photos in case a higher-res version is ever needed again.
+import sharp from 'sharp';
+import { readdir, mkdir, rename, stat } from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-import { readdir, stat, readFile, writeFile } from 'node:fs/promises';
-import { join, extname } from 'node:path';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const root = path.join(__dirname, '..');
+const publicDir = path.join(root, 'public');
+const originalsDir = path.join(root, 'originals');
 
-let sharp;
-try {
-  sharp = (await import('sharp')).default;
-} catch {
-  console.error('Falta la dependencia "sharp". Instálala con:  npm i -D sharp');
+const TARGETS = [
+  path.join(publicDir, 'assets', 'proyectos'),
+  path.join(publicDir, 'assets', 'cr-map-relief.png'),
+];
+const MAX_DIM = 1600;
+const WEBP_QUALITY = 78;
+
+async function* walk(p) {
+  const s = await stat(p);
+  if (s.isFile()) {
+    yield p;
+    return;
+  }
+  for (const entry of await readdir(p, { withFileTypes: true })) {
+    const full = path.join(p, entry.name);
+    if (entry.isDirectory()) yield* walk(full);
+    else yield full;
+  }
+}
+
+function isPhoto(file) {
+  return /\.(png|jpe?g)$/i.test(file);
+}
+
+async function main() {
+  let totalBefore = 0;
+  let totalAfter = 0;
+  const converted = []; // { oldPublicPath, newPublicPath }
+
+  for (const target of TARGETS) {
+    for await (const file of walk(target)) {
+      if (!isPhoto(file)) continue;
+
+      const before = (await stat(file)).size;
+      const webpPath = file.replace(/\.(png|jpe?g)$/i, '.webp');
+
+      await sharp(file)
+        .resize({ width: MAX_DIM, height: MAX_DIM, fit: 'inside', withoutEnlargement: true })
+        .webp({ quality: WEBP_QUALITY })
+        .toFile(webpPath);
+
+      const after = (await stat(webpPath)).size;
+      totalBefore += before;
+      totalAfter += after;
+
+      // Move the original out of public/ so Vite never ships it, but keep it
+      // on disk under originals/ (mirrors the same relative path).
+      const relFromPublic = path.relative(publicDir, file);
+      const archivePath = path.join(originalsDir, relFromPublic);
+      await mkdir(path.dirname(archivePath), { recursive: true });
+      await rename(file, archivePath);
+
+      const oldPublicPath = '/' + path.relative(publicDir, file).split(path.sep).join('/');
+      const newPublicPath = '/' + path.relative(publicDir, webpPath).split(path.sep).join('/');
+      converted.push({ oldPublicPath, newPublicPath });
+
+      console.log(
+        `${oldPublicPath}  ${(before / 1024 / 1024).toFixed(2)}MB -> ${(after / 1024).toFixed(0)}KB`,
+      );
+    }
+  }
+
+  console.log('\n--- Summary ---');
+  console.log(`Files converted: ${converted.length}`);
+  console.log(`Total before: ${(totalBefore / 1024 / 1024).toFixed(1)} MB`);
+  console.log(`Total after:  ${(totalAfter / 1024 / 1024).toFixed(1)} MB`);
+  console.log(`Originals moved to: ${path.relative(root, originalsDir)}/`);
+
+  // Write the rename map for the reference-rewrite step.
+  const mapPath = path.join(__dirname, 'image-rename-map.json');
+  const fs = await import('node:fs/promises');
+  await fs.writeFile(mapPath, JSON.stringify(converted, null, 2));
+  console.log(`\nRename map written to scripts/image-rename-map.json`);
+}
+
+main().catch((err) => {
+  console.error(err);
   process.exit(1);
-}
-
-const ROOT = 'public/assets';
-const MAX_WIDTH = 2000;
-const JPEG_QUALITY = 72;
-const DRY = process.argv.includes('--dry');
-
-const exts = new Set(['.jpg', '.jpeg', '.png']);
-
-async function* walk(dir) {
-  for (const entry of await readdir(dir, { withFileTypes: true })) {
-    const p = join(dir, entry.name);
-    if (entry.isDirectory()) yield* walk(p);
-    else if (exts.has(extname(entry.name).toLowerCase())) yield p;
-  }
-}
-
-let before = 0;
-let after = 0;
-let changed = 0;
-
-for await (const file of walk(ROOT)) {
-  const original = await readFile(file);
-  const ext = extname(file).toLowerCase();
-
-  let pipeline = sharp(original).rotate();
-  const meta = await pipeline.metadata();
-  if (meta.width && meta.width > MAX_WIDTH) {
-    pipeline = pipeline.resize({ width: MAX_WIDTH, withoutEnlargement: true });
-  }
-
-  pipeline =
-    ext === '.png'
-      ? pipeline.png({ compressionLevel: 9, palette: true })
-      : pipeline.jpeg({ quality: JPEG_QUALITY, mozjpeg: true });
-
-  const out = await pipeline.toBuffer();
-
-  before += original.length;
-  if (out.length < original.length) {
-    after += out.length;
-    changed++;
-    const saved = ((1 - out.length / original.length) * 100).toFixed(0);
-    console.log(
-      `${DRY ? '[dry] ' : ''}${file}  ${(original.length / 1024).toFixed(0)}KB -> ${(out.length / 1024).toFixed(0)}KB  (-${saved}%)`,
-    );
-    if (!DRY) await writeFile(file, out);
-  } else {
-    after += original.length;
-  }
-}
-
-console.log(
-  `\n${changed} archivos ${DRY ? 'se optimizarían' : 'optimizados'}. ` +
-    `Total: ${(before / 1048576).toFixed(1)}MB -> ${(after / 1048576).toFixed(1)}MB`,
-);
+});
