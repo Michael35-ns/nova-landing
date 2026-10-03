@@ -5,8 +5,9 @@ export function useCounters(selector = '[data-count]') {
     const els = document.querySelectorAll(selector);
     if (!('IntersectionObserver' in window)) {
       els.forEach((el) => {
-        const target = Number((el as HTMLElement).dataset.count || 0);
-        (el as HTMLElement).textContent = String(target);
+        const { count, prefix = '', suffix = '' } = (el as HTMLElement).dataset;
+        const target = Number(count || 0);
+        (el as HTMLElement).textContent = prefix + target + suffix;
       });
       return;
     }
@@ -21,6 +22,7 @@ export function useCounters(selector = '[data-count]') {
     els.forEach((el) => co.observe(el));
     function animateCount(el: HTMLElement) {
       const target = parseFloat(el.dataset.count || '0');
+      const prefix = el.dataset.prefix || '';
       const suffix = el.dataset.suffix || '';
       const dur = 1400;
       const start = performance.now();
@@ -28,9 +30,9 @@ export function useCounters(selector = '[data-count]') {
         const p = Math.min((now - start) / dur, 1);
         const eased = 1 - Math.pow(1 - p, 3);
         const val = Math.round(target * eased);
-        el.textContent = val + suffix;
+        el.textContent = prefix + val + suffix;
         if (p < 1) requestAnimationFrame(tick);
-        else el.textContent = target + suffix;
+        else el.textContent = prefix + target + suffix;
       }
       requestAnimationFrame(tick);
     }

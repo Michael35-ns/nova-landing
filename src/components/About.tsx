@@ -8,7 +8,7 @@ export default function About() {
           <div className="about-media reveal">
             <ImageSlot src="/assets/proyectos/telecomunicaciones/portada.webp" alt="Torre autosoportada de telecomunicaciones construida por NOVOSTI en Costa Rica" className="about-img" />
             <div className="badge">
-              <b data-count="15" data-suffix="">15</b>
+              <b data-count="15" data-prefix="+">+15</b>
               <span data-en="Years of experience">Años de experiencia</span>
             </div>
           </div>

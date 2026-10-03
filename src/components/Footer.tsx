@@ -21,7 +21,7 @@ export default function Footer() {
           <a href="#services" data-en="Construction & remodeling">Construcción y remodelación</a>
           <a href="#services" data-en="Infrastructure maintenance">Mantenimiento de infraestructura</a>
           <a href="#services" data-en="Telecommunications infrastructure">Infraestructura de telecomunicaciones</a>
-          <a href="#contact" data-en="Public tenders">Licitaciones públicas</a>
+          <a href="#contact" data-en="Public tenders">Diseño y Arquitectura</a>
         </div>
 
         <div className="footer-col">
