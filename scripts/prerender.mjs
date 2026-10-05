@@ -71,7 +71,21 @@ async function main() {
   }
 
   const server = await serveDist();
-  const browser = await puppeteer.launch({ headless: true });
+  let browser;
+  try {
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+  } catch (err) {
+    // A missing/incompatible Chrome must not fail the deploy: the Vite build
+    // is already a working client-rendered site, prerendering only adds the
+    // static HTML for crawlers on top of it.
+    server.close();
+    console.warn('[prerender] skipped: no usable Chrome for puppeteer.');
+    console.warn('[prerender] ' + String(err.message).split('\n')[0]);
+    return;
+  }
 
   try {
     const page = await browser.newPage();
