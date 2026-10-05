@@ -28,7 +28,7 @@ export default function Hero() {
               <div className="s"><b data-count="15" data-suffix="+">15+</b><span data-en="Years of experience">Años de experiencia</span></div>
               <div className="s"><b data-count="700" data-suffix="+">700+</b><span data-en="Projects">Proyectos</span></div>
               <div className="s"><b data-count="100" data-suffix="%">100%</b><span data-en="Satisfied clients">Clientes satisfechos</span></div>
-              <div className="s"><b data-count="7" data-suffix="">7</b><span data-en="Provinces covered nationwide">Provincias del país cubiertas</span></div>
+              <div className="s"><b data-count="7" data-suffix="">7</b><span data-en="Provinces · coverage across the whole country">Provincias con cobertura en todo el país</span></div>
             </div>
           </div>
         </div>
